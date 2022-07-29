@@ -32,7 +32,7 @@ const NavBar = (props) => {
   <div className="menu-list auth">
     {!userInfo &&
       providers.map((provider) => (
-        <a key={provider} href={` /${provider}?post_login_redirect_uri=${redirect}`}>
+        <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
           {provider}
         </a>
       ))}
