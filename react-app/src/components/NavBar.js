@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import getUserInfo from './getUserInfo';
 
 const NavBar = (props) => {
   const [userInfo, setUserInfo] = useState();
@@ -11,18 +12,6 @@ const NavBar = (props) => {
       setUserInfo(await getUserInfo());
     })();
   }, []);
-
-  async function getUserInfo() {
-    try {
-      const response = await fetch('/.auth/me');
-      const payload = await response.json();
-      const { clientPrincipal } = payload;
-      return clientPrincipal;
-    } catch (error) {
-      console.error('No profile could be found');
-      return undefined;
-    }
-  }
 
   return (
     <div className="column is-2">
@@ -43,7 +32,7 @@ const NavBar = (props) => {
   <div className="menu-list auth">
     {!userInfo &&
       providers.map((provider) => (
-        <a key={provider} href={`/.auth/login/${provider}?post_login_redirect_uri=${redirect}`}>
+        <a key={provider} href={` /${provider}?post_login_redirect_uri=${redirect}`}>
           {provider}
         </a>
       ))}
